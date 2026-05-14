@@ -48,10 +48,12 @@ public class AuthGlobalFliter implements GlobalFilter, Ordered {
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             return response.setComplete();
         }
-        // TODO 传递用户信息
-
+        // 传递用户信息
+        ServerWebExchange build = exchange.mutate()
+                .request(builder -> builder.header("user-info", userId.toString()))
+                .build();
         // 放行
-        return chain.filter(exchange);
+        return chain.filter(build);
     }
 
     @Override
