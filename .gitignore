@@ -33,3 +33,7 @@ Thumbs.db
 # Maven 临时文件
 dependency-reduced-pom.xml
 build.log
+
+# 临时文件
+*.md
+*.pang
