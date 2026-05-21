@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class MqConfig {
     @Bean
     public MessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter();
+        Jackson2JsonMessageConverter messageConverter = new Jackson2JsonMessageConverter();
+        // 自动生成唯一ID，（消费方需要使用Message对象接受）
+        // messageConverter.setCreateMessageIds(true);
+        return messageConverter;
     }
 }
