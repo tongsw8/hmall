@@ -19,7 +19,7 @@ public class DefaultFeignConfig {
             @Override
             public void apply(RequestTemplate requestTemplate) {
                 Long user = UserContext.getUser();
-                requestTemplate.header("user", user.toString());
+                requestTemplate.header("user-info", user.toString());
             }
         };
     }
