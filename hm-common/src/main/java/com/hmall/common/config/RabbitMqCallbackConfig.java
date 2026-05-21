@@ -2,7 +2,9 @@ package com.hmall.common.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -38,5 +40,12 @@ public class RabbitMqCallbackConfig {
                     returned.getReplyText(),
                     returned.getMessage());
         });
+
+        // 3. 发送消息时，设置消息持久化
+        rabbitTemplate.addBeforePublishPostProcessors(message -> {
+            message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+            return message;
+        });
+
     }
 }
