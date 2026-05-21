@@ -24,3 +24,6 @@ spring:
 #        initial-interval: 1000ms # 失败后首次等待时间
 #        multiplier: 1 # 失败后下次等待重连的时间倍数
 #        max-attempts: 3 # 最大重试次数
+    # 开启发送者确认机制
+    publisher-confirm-type: correlated # 开启publisher-confirm机制，并设置confirm类型（none:不开启  simple:同步等待结果  correlated:异步回调）
+    publisher-returns: true # 开启publisher-return机制
