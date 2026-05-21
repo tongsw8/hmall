@@ -9,3 +9,10 @@ hm:
   swagger:
     title: "黑马商场支付服务接口文档"
     package: com.hm.mall.pay.controller
+spring:
+  rabbitmq:
+    host: 192.168.189.188
+    port: 5672
+    virtual-host: /tongsw
+    username: tongsw
+    password: 123321
