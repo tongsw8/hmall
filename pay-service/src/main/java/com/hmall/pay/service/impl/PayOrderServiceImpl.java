@@ -17,6 +17,7 @@ import com.hmall.pay.service.IPayOrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +62,8 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         }
         // 5.修改订单状态
         try {
-            rabbitTemplate.convertAndSend("pay.direct", "pay.success", po.getBizOrderNo());
+            CorrelationData cd = new CorrelationData(po.getBizOrderNo().toString());
+            rabbitTemplate.convertAndSend("pay.direct", "pay.success", po.getBizOrderNo(), cd);
         } catch (AmqpException e) {
             log.error("发送支付成功消息失败！订单ID：{}", po.getId(), e);
         }
