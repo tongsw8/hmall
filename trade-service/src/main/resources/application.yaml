@@ -16,3 +16,7 @@ spring:
     virtual-host: /tongsw
     username: tongsw
     password: 123321
+    listener:
+      simple:
+        prefetch: 1
+        acknowledge-mode: auto # none:不开启ack（消费者拿到消息，消息立马丢失） manual:手动 auto:自动(业务异常，自动重试)（消息异常，拒绝并删除消息）
