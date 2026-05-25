@@ -9,8 +9,8 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.hmall</groupId>
-    <artifactId>item-service</artifactId>
+    <groupId>com.hamll</groupId>
+    <artifactId>cart-service</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -45,10 +45,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--nacos-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--Ok http-->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+        <!--api-->
+        <dependency>
+            <groupId>com.hmall.api</groupId>
+            <artifactId>hm-api</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <build>
