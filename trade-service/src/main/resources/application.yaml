@@ -9,3 +9,19 @@ hm:
   swagger:
     title: "黑马商场交易服务接口文档"
     package: com.hm.mall.trade.controller
+spring:
+  rabbitmq:
+    host: 192.168.189.188
+    port: 5672
+    virtual-host: /tongsw
+    username: tongsw
+    password: 123321
+    listener:
+      simple:
+        prefetch: 1
+        acknowledge-mode: auto # none:不开启ack（消费者拿到消息，消息立马丢失） manual:手动 auto:自动(业务异常，自动重试)（消息异常，拒绝并删除消息）
+        retry:
+          enabled: true # 开启消费者失败重试（本地重试）
+          initial-interval: 1000ms # 初始失败等待时长
+          max-attempts: 3 # 最大重试次数
+          stateless: true # true无状态；false有状态。如果业务中包含事务，这里改为false

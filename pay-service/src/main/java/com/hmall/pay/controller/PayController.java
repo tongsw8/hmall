@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "支付相关接口")
@@ -20,7 +21,10 @@ public class PayController {
     private final IPayOrderService payOrderService;
 
     @ApiOperation("生成支付单")
-    @PostMapping
+    @PostMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public String applyPayOrder(@RequestBody PayApplyDTO applyDTO){
         if(!PayType.BALANCE.equalsValue(applyDTO.getPayType())){
             // 目前只支持余额支付
